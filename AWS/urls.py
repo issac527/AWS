@@ -17,10 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ac/', include('accountapp.urls')),
-    path('sv/', include('serviceapp.urls')),
     path('pr/', include('profileapp.urls')),
+    path('fc/', include('functionapp.urls')),
+    path('sv/', include('serviceapp.urls')),
+    path('cm/', include('commentapp.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

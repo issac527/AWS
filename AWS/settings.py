@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'accountapp',
     'profileapp',
+    'functionapp',
+    'commentapp',
     'serviceapp',
 ]
 

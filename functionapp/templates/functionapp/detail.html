@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div>
+        <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+
+            <h1>
+                {{ target_func.F_title }}
+            </h1>
+            <h5>
+                {{ target_func.F_write.profile.nickname }}
+            </h5>
+            <p>
+                {{ target_func.F_language }}
+            </p>
+
+
+            <hr>
+
+            <img style="width: 100%; border-radius: 3rem; margin: 2rem 0;"
+                src="{{ target_func.F_image.url }}" alt="">
+
+
+            {% if target_func.F_write == user %}
+            <a href="{% url 'functionapp:delete' pk=target_func.pk %}"
+                class="btn btn-danger rounded-pill col-3">
+                Delete
+            </a>
+            {% endif %}
+
+        <hr>
+
+        {% for comment in target_func.comment.all %}
+            {% include 'commentapp/detail.html' with comment=comment %}
+        {% endfor %}
+
+        {% include 'commentapp/create.html' with func=target_func %}
+
+        </div>
+    </div>
+
+{% endblock %}

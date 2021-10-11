@@ -1,13 +1,27 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
 
-    <div style="border-radius: 1rem; margin: 2rem; text-align: center;">
-
-        <h1 style="font-family: 'lobster', cursive;">
-            SERVICE PAGE
-        </h1>
-
+    <div class="wrapper">
+        <div class="container">
+            <ul class="slider">
+                <li class="item">
+                    <img src="media/ppt/ppt1.PNG" style="max-width: 100%; height: 100%;">
+                </li>
+                <li class="item">
+                    <img src="media/ppt/ppt1.PNG" style="max-width: 100%; height: 100%;">
+                </li>
+                <li class="item">
+                    <img src="media/ppt/ppt1.PNG" style="max-width: 100%; height: 100%;">
+                </li>
+            </ul>
+        </div>
+        <div class="btn">
+            <a class="prev" style="text-decoration: none;">&#10094;</a>
+            <a class="next" style="text-decoration: none;">&#10095;</a>
+        </div>
     </div>
+    <script src="{% static 'js/slide.js' %}"></script>
 
 {% endblock %}
