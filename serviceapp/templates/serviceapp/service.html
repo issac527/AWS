@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
 
-    <div style="border-radius: 1rem; margin: 2rem; text-align: center;">
-
-        <h1 style="font-family: 'lobster', cursive;">
-            SERVICE PAGE
-        </h1>
-
+    <div class="wrapper">
+        <div class="container">
+            <ul class="slider">
+                <li class="item">1st</li>
+                <li class="item">2nd</li>
+                <li class="item">3rd</li>
+            </ul>
+        </div>
+        <div class="btn">
+            <a class="prev" style="text-decoration: none;">&#10094;</a>
+            <a class="next" style="text-decoration: none;">&#10095;</a>
+        </div>
     </div>
+    <script src="{% static 'js/slide.js' %}"></script>
 
 {% endblock %}

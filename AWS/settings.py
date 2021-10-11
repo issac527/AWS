@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'accountapp',
     'profileapp',
     'serviceapp',
+    'functionapp',
 ]
 
 MIDDLEWARE = [

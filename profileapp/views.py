@@ -10,11 +10,10 @@ from profileapp.decorators import profile_ownership_required
 from profileapp.forms import ProfileCreationForm
 from profileapp.models import Profile
 
-has_ownership = [login_required, profile_ownership_required]
 
 
-# @method_decorator(has_ownership, 'get')
-# @method_decorator(has_ownership, 'post')
+@method_decorator(login_required(), 'get')
+@method_decorator(login_required(), 'post')
 class ProfileCreateView(CreateView):
     model = Profile
     context_object_name = 'target_profile'
@@ -31,8 +30,8 @@ class ProfileCreateView(CreateView):
         return reverse('accountapp:detail', kwargs={"pk": self.object.user.pk})
 
 
-# @method_decorator(has_ownership, 'get')
-# @method_decorator(has_ownership, 'post')
+@method_decorator(profile_ownership_required, 'get')
+@method_decorator(profile_ownership_required, 'post')
 class ProfileUpdateView(UpdateView):
     model = Profile
     context_object_name = 'target_profile'
