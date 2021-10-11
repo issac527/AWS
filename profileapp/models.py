@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-LANGUAGE_CHOICES = (("Korean", "Korean"), ("English", "English"), ("Japanese", "Japanese"),
+LANGUAGE_CHOICES = (("English", "English"), ("Japanese", "Japanese"),
                     ("Simplified Chinese", "Simplified Chinese"), ("Traditional Chinese", "Traditional Chinese"),
                     ("Vietnamese", "Vietnamese"), ("Indonesian", "Indonesian"), ("Thai", "Thai"), ("German", "German"),
                     ("Russian", "Russian"), ("Spanish", "Spanish"), ("Italian", "Italian"), ("French", "French"))

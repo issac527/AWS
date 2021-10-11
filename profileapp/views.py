@@ -12,8 +12,11 @@ from profileapp.models import Profile
 
 
 
+<<<<<<< HEAD
 @method_decorator(login_required(), 'get')
 @method_decorator(login_required(), 'post')
+=======
+>>>>>>> 302ab1aea0a3428d9ddb8a2fe2c60d121b23dc7e
 class ProfileCreateView(CreateView):
     model = Profile
     context_object_name = 'target_profile'
@@ -30,8 +33,13 @@ class ProfileCreateView(CreateView):
         return reverse('accountapp:detail', kwargs={"pk": self.object.user.pk})
 
 
+<<<<<<< HEAD
 @method_decorator(profile_ownership_required, 'get')
 @method_decorator(profile_ownership_required, 'post')
+=======
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
+>>>>>>> 302ab1aea0a3428d9ddb8a2fe2c60d121b23dc7e
 class ProfileUpdateView(UpdateView):
     model = Profile
     context_object_name = 'target_profile'
