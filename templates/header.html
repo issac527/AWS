@@ -4,16 +4,22 @@
         <h1 class="AWS_logo"><a href = "{% url 'serviceapp:service' %}" >A.W.S</a></h1>
     </div>
 
-    <div>
+    <div class="AWS_menu">
 
         <a href="{% url 'serviceapp:service' %}">
             <span>Service</span>
         </a>
 
-        <span>Function</span>
+        <a href="{% url 'functionapp:list' %}">
+            <span>List</span>
+        </a>
+
+        <a href="{% url 'functionapp:F_main' %}">
+            <span>Function</span>
+        </a>
 
         {% if not user.is_authenticated %}
-            <a href="{% url 'accountapp:login' %}">
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
                 <span>Login</span>
             </a>
 
