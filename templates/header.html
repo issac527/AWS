@@ -4,21 +4,21 @@
         <h1 class="AWS_logo"><a href = "{% url 'serviceapp:service' %}" >A W S</a></h1>
     </div>
 
-    <div class="AWS_menu">
+    <div class="header_navbar">
 
-        <a href="{% url 'serviceapp:service' %}">
+        <a href="{% url 'serviceapp:service' %}" class="header_nav">
             <span>Service</span>
         </a>
 
-        <a href="{% url 'projectapp:list' %}">
+        <a href="{% url 'projectapp:list' %}" class="header_nav">
             <span>Project</span>
         </a>
 
-        <a href="{% url 'functionapp:list' %}">
+        <a href="{% url 'functionapp:list' %}" class="header_nav">
             <span>List</span>
         </a>
 
-        <a href="{% url 'functionapp:F_main' %}">
+        <a href="{% url 'functionapp:F_main' %}" class="header_nav">
             <span>Function</span>
         </a>
 
