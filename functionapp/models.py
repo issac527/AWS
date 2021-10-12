@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from profileapp.models import Profile
+from projectapp.models import Project
 
 LANGUAGE_CHOICES = (('English', 'English'), ('Japanese', 'Japanese'), ('chinese', 'chinese'),
                     ('vietnamese', 'vietnamese'), ('Indonesia', 'Indonesia'), ('arabic', 'arabic'),
@@ -14,6 +15,8 @@ class FunctionInfo(models.Model):
     # Function 전 입력 데이터
     # 작성자/ 번역 요청 유저
     F_write = models.ForeignKey(User, on_delete=models.CASCADE, related_name='function', null=True)
+    # 프로젝트와 연결
+    F_project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='function', null=True)
     # 번역 게시글 제목
     F_title = models.CharField(max_length=200, null=True)
     # 번역할 이미지

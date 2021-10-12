@@ -7,11 +7,14 @@ from django.shortcuts import render
 # Create your views here.
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import UIUpdateView
 from accountapp.models import HelloWorld
 from django.urls import reverse, reverse_lazy
+
+from functionapp.models import FunctionInfo
 
 has_ownership = [login_required, account_ownership_required]
 
@@ -25,10 +28,16 @@ class SignUpView(CreateView):
 
 
 # 유저의 정보 보여주기
-class UserDetailView(DetailView):
+class UserDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+    paginate_by = 25
+
+    def get_context_data(self, **kwargs):
+        object_list = FunctionInfo.objects.filter(F_write=self.get_object())
+        return super(UserDetailView, self).get_context_data(object_list=object_list)
 
 
 # 유저 정보 변경

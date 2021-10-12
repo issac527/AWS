@@ -1,0 +1,45 @@
+{% load static %}
+
+<style>
+
+    .container{
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .container a{
+        width: 45%;
+        max-width: 250px;
+    }
+
+    .container div {
+      background-color: antiquewhite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 1.5rem;
+    }
+
+    .container img{
+        width: 100%;
+        border-radius: 1.5rem;
+    }
+</style>
+
+    {% if func_list %}
+    <div class="container">
+        {% for func in func_list %}
+        <a href="{% url 'functionapp:detail' pk=func.pk %}">
+            {% include 'snippets/card.html' with func=func %}
+        </a>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+    {% else %}
+    <div class="text-center">
+        <h1>No Functions YET!</h1>
+    </div>
+    {% endif %}
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
