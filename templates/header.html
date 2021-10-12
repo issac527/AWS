@@ -14,29 +14,29 @@
             <span>Project</span>
         </a>
 
-        <a href="{% url 'functionapp:list' %}" class="header_nav">
-            <span>List</span>
-        </a>
+{#        <a href="{% url 'functionapp:list' %}" class="header_nav">#}
+{#            <span>List</span>#}
+{#        </a>#}
 
         <a href="{% url 'functionapp:F_main' %}" class="header_nav">
             <span>Function</span>
         </a>
 
         {% if not user.is_authenticated %}
-            <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="header_nav">
                 <span>Login</span>
             </a>
 
-            <a href="{% url 'accountapp:create' %}">
+            <a href="{% url 'accountapp:create' %}" class="header_nav">
                 <span>SignUP</span>
             </a>
 
         {% else %}
-            <a href="{% url 'accountapp:detail' pk=user.pk %}">
+            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="header_nav">
                 <span>MyPage</span>
             </a>
 
-            <a href="{% url 'accountapp:logout' %}">
+            <a href="{% url 'accountapp:logout' %}" class="header_nav">
                 <span>Logout</span>
             </a>
         {% endif %}

@@ -6,7 +6,7 @@ from functionapp.views import function_main_page, FICreateView, FRDetailView, Fu
 app_name="functionapp"
 
 urlpatterns = [
-    path('list/', FuncListView.as_view(), name='list'),
+    # path('list/', FuncListView.as_view(), name='list'),
     path('main/', function_main_page, name="F_main"),
 
     path('create/', FICreateView.as_view(), name='create'),

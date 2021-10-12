@@ -31,7 +31,7 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
-        object_list = FunctionInfo.objects.filter(F_language="English")
+        object_list = FunctionInfo.objects.filter(F_language=self.object)
         return super(ProjectDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 
