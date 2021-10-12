@@ -24,7 +24,9 @@ urlpatterns = [
     path('ac/', include('accountapp.urls')),
     path('pr/', include('profileapp.urls')),
     path('fc/', include('functionapp.urls')),
-    path('sv/', include('serviceapp.urls')),
+    path('', include('serviceapp.urls')),
     path('cm/', include('commentapp.urls')),
+    path('pj/', include('projectapp.urls')),
+    path('sb/', include('subscribeapp.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

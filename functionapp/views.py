@@ -9,6 +9,7 @@ from commentapp.forms import CommentCreationForm
 from functionapp.decorators import func_ownership_required
 from functionapp.forms import FunctionInfoForm
 from functionapp.models import FunctionInfo
+from Function.input_img import img_translated
 
 
 # Function main Page로 가기 위한 함수
@@ -25,19 +26,32 @@ class FICreateView(CreateView):
     template_name = 'functionapp/create.html'
 
     def form_valid(self, form):
-        # form에 입력된 데이터 가져옴
-        temp_fi = form.save(commit=False)
+        # form에 입력된 데이터 가져오면서 임시 저장
+        temp_fi = form.save()
+        # 임시 저장된 데이터를 지우기 위한 PK을 미리 저장
+        F_PK = temp_fi.pk
+
+        # 현재 접속된 User를 작성자로 넘겨줌
         temp_fi.F_write = self.request.user
-        ###################################
-        # 여기에 기능구현한 부분 넣어줄거임
-        #         # 기능 구현 후 필드에 올바른 값 넣어주고
-        #         # Save하면 번역하면서 도출된 값들을
-        #         # DB에 저장할 수 있음
-        #         # temp_fi.F_img_txt = 이미지에서 도출된 문자 (한 단어/문장 당 ','로 구분)
-        #         # temp_fi.F_img_result = 도출된 문자를 번역한 문자 (한 단어/문장 당 ','로 구분)
-        #         # temp_fi.F_img_Coordinate = 이미지에서 도출된 문자의 중심좌표
-        #         #                            ("X1/Y1,X2/Y2,X3/Y3...." 이런식으로 '/', ','로 구분)
-        ###################################
+
+        # 사용자가 선택한 이미지의 url값을 문자값으로 변환하여 변수에 담아줌
+        url = str(temp_fi.F_image)
+        # 사용자가 선택한 언어 값을 문자값으로 변환하여 변수에 담아줌
+        lang = str(temp_fi.F_language)
+
+        # 이미지 문자 추출 및 번역을 하는 함수를 실행하여 결과값을
+        # 변수에 담아줌 / 이미지에서 추출된 문자, 번역한 문자
+        img_txt, return_txt = img_translated(url, lang)
+        temp_fi.F_img_txt = img_txt
+        temp_fi.F_img_result = return_txt
+        print(temp_fi.F_img_txt)
+        print(temp_fi.F_img_result)
+
+        # 임시로 저장했던 데이터를 DB에서 지워줌
+        f_data = FunctionInfo.objects.get(pk=F_PK)
+        f_data.delete()
+
+        # 다시 불러와서 DB에 저장
         temp_fi.save()
         return super().form_valid(form)
 

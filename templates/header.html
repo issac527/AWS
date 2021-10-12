@@ -1,13 +1,17 @@
 <div class="AWS_header">
 
     <div>
-        <h1 class="AWS_logo"><a href = "{% url 'serviceapp:service' %}" >A.W.S</a></h1>
+        <h1 class="AWS_logo"><a href = "{% url 'serviceapp:service' %}" >A W S</a></h1>
     </div>
 
     <div class="AWS_menu">
 
         <a href="{% url 'serviceapp:service' %}">
             <span>Service</span>
+        </a>
+
+        <a href="{% url 'projectapp:list' %}">
+            <span>Project</span>
         </a>
 
         <a href="{% url 'functionapp:list' %}">

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load Tags %}
 
 {% block content %}
     <div>
@@ -11,18 +12,43 @@
             <h5>
                 {{ target_func.F_write.profile.nickname }}
             </h5>
-            <p>
-                {{ target_func.F_language }}
-            </p>
-
 
             <hr>
 
             <img style="width: 100%; border-radius: 3rem; margin: 2rem 0;"
                 src="{{ target_func.F_image.url }}" alt="">
 
+            {#===============================================================#}
+            {% if target_func.F_img_txt != None %}
+            <hr>
+            <h2>
+                Translated into {{ target_func.F_language }}
+            </h2>
+            <center>
+            {% with target_func.F_img_txt|split:',' as funcs %}
+            {% with target_func.F_img_result|split:',' as rfuncs %}
+            {% with funcs|f_range as fnum %}
+            {% for f in fnum %}
+            <div style="border: 2px solid; text-align: center; padding: 1%; margin: .5rem 0; border-radius: 1rem;
+            border-color: #bbb; width: 50%; font-family: 'Malgun Gothic'">
+                {% with funcs|f_index:f as func %}
+                {% with rfuncs|f_index:f as rfunc %}
+                    {{ func }} ▶ {{ rfunc }}
+                {% endwith %}
+                {% endwith %}
+            </div>
+            {% endfor %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            </center>
+            {% else %}
+
+            {% endif %}
+            {#===============================================================#}
 
             {% if target_func.F_write == user %}
+            <hr>
             <a href="{% url 'functionapp:delete' pk=target_func.pk %}"
                 class="btn btn-danger rounded-pill col-3">
                 Delete
@@ -35,7 +61,9 @@
             {% include 'commentapp/detail.html' with comment=comment %}
         {% endfor %}
 
-        {% include 'commentapp/create.html' with func=target_func %}
+        {% if target_func.F_write == user %}
+            {% include 'commentapp/create.html' with func=target_func %}
+        {% endif %}
 
         </div>
     </div>
